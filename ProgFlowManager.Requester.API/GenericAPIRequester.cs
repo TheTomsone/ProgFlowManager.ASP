@@ -19,31 +19,31 @@ namespace ProgFlowManager.Requester.API
             HttpClient.BaseAddress = new Uri(_url);
         }
 
-        private TReturn JSONResponse<TReturn>(HttpResponseMessage response)
+        private TResult JSONResponse<TResult>(HttpResponseMessage response)
         {
-            Type responseType = typeof(TReturn);
+            Type responseType = typeof(TResult);
 
             if (response.IsSuccessStatusCode)
             {
                 //string responseStr = response.Content.ReadAsStringAsync().Result;
                 //Console.WriteLine(responseStr);
-                if (responseType == typeof(bool)) return (TReturn)(object)(response.StatusCode == System.Net.HttpStatusCode.OK);
-                else if (responseType == typeof(string)) return (TReturn)(object)response.Content.ReadAsStringAsync().Result;
-                else return JSONDeserialize<TReturn>(ref response);
+                if (responseType == typeof(bool)) return (TResult)(object)(response.StatusCode == System.Net.HttpStatusCode.OK);
+                else if (responseType == typeof(string)) return (TResult)(object)response.Content.ReadAsStringAsync().Result;
+                else return JSONDeserialize<TResult>(ref response);
             }
             else throw new Exception(response.StatusCode.ToString());
         }
-        private TModel JSONDeserialize<TModel>(ref HttpResponseMessage response)
+        private TResult JSONDeserialize<TResult>(ref HttpResponseMessage response)
         {
             string json = response.Content.ReadAsStringAsync().Result;
-            return JsonConvert.DeserializeObject<TModel>(json);
+            return JsonConvert.DeserializeObject<TResult>(json);
         }
         private HttpContent JSONSerialize<TModel>(TModel model, string mediaType = "application/json")
         {
             string jsonToSend = JsonConvert.SerializeObject(model);
             return new StringContent(jsonToSend, Encoding.UTF8, mediaType);
         }
-        private TReturn SerializeLogic<TReturn, TModel>(Func<string, HttpContent, HttpResponseMessage> urlToResponse,
+        private TResult SerializeLogic<TModel, TResult>(Func<string, HttpContent, HttpResponseMessage> urlToResponse,
                                                                     string url, TModel model,
                                                                     string token = "",
                                                                     string mediaType = "application/json")
@@ -53,9 +53,9 @@ namespace ProgFlowManager.Requester.API
 
             using HttpResponseMessage response = urlToResponse(url, JSONSerialize(model, mediaType));
 
-            return JSONResponse<TReturn>(response);
+            return JSONResponse<TResult>(response);
         }
-        private TReturn DeserializeLogic<TReturn>(Func<string, HttpResponseMessage> urlToResponse,
+        private TResult DeserializeLogic<TResult>(Func<string, HttpResponseMessage> urlToResponse,
                                                                     string url,
                                                                     string token = "")
         {
@@ -64,16 +64,17 @@ namespace ProgFlowManager.Requester.API
 
             using HttpResponseMessage response = urlToResponse(url);
 
-            return JSONResponse<TReturn>(response);
+            return JSONResponse<TResult>(response);
         }
 
-        public TModel Get<TModel>(string url, string token = "")
+
+        public TResult Get<TResult>(string url, string token = "")
         {
-            return DeserializeLogic<TModel>(url => HttpClient.GetAsync(url).Result, url, token);
+            return DeserializeLogic<TResult>(url => HttpClient.GetAsync(url).Result, url, token);
         }
-        public TReturn Post<TReturn, TModel>(TModel model, string url, string token = "", string mediaType = "application/json")
+        public TResult Post<TModel, TResult>(TModel model, string url, string token = "", string mediaType = "application/json")
         {
-            return SerializeLogic<TReturn, TModel>((url, content) => HttpClient.PostAsync(url, content).Result, url, model, token, mediaType);
+            return SerializeLogic<TModel, TResult>((url, content) => HttpClient.PostAsync(url, content).Result, url, model, token, mediaType);
         }
         public bool Delete(string url, string token = "")
         {
@@ -81,7 +82,7 @@ namespace ProgFlowManager.Requester.API
         }
         public bool Patch<TModel>(TModel model, string url, string token = "", string mediaType = "application/json")
         {
-            return SerializeLogic<bool, TModel>((url, content) => HttpClient.PatchAsync(url, content).Result, url, model, token, mediaType);
+            return SerializeLogic<TModel, bool>((url, content) => HttpClient.PatchAsync(url, content).Result, url, model, token, mediaType);
         }
     }
 }

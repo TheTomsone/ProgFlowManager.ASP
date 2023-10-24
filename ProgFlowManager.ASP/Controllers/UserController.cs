@@ -25,7 +25,7 @@ namespace ProgFlowManager.ASP.Controllers
         {
             if(!ModelState.IsValid) return View(register);
 
-            if (_genericAPIRequester.Post<bool, RegisterViewModel>(register, "User/register")) return RedirectToAction("Index", "Home");
+            if (_genericAPIRequester.Post<RegisterViewModel, bool>(register, "User/register")) return RedirectToAction("Index", "Home");
 
             return View();
         }
@@ -36,7 +36,7 @@ namespace ProgFlowManager.ASP.Controllers
 
             try
             {
-                _sessionManager.Token = _genericAPIRequester.Post<string, LoginViewModel>(login, "User/login");
+                _sessionManager.Token = _genericAPIRequester.Post<LoginViewModel, string>(login, "User/login");
                 return RedirectToAction("Index", "Home");
             }
             catch (Exception ex) { return BadRequest(ex.Message); }
