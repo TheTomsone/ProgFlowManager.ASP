@@ -11,10 +11,10 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/ProgFlowManager.ASP.styles.css" asp-append-version="true" />
 </head>
-<body id="body-pd" data-controller="@ViewData["ControllerName"]">
-    <header class="header" id="header">
-        <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
-        <div class="l-navbar" id="nav-bar">
+<body id="body-pd" class="@(_session.IsMenuOpen ? "body-pd" : "")" data-controller="@ViewData["ControllerName"]">
+    <header class="header @(_session.IsMenuOpen ? "body-pd" : "")" id="header">
+        <div class="header_toggle @(_session.IsMenuOpen ? "bx-x" : "")"> <i class='bx bx-menu' id="header-toggle"></i> </div>
+        <div class="l-navbar @(_session.IsMenuOpen ? "show" : "")" id="nav-bar">
             <div>
                 <a class="nav_logo" asp-area="" asp-controller="Home" asp-action="Index"> <i class='bx bx-layer nav_logo-icon'></i> <span class="nav_logo-name" id="logo-name">ProgFlowManager</span> </a>
             </div>

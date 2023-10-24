@@ -86,8 +86,14 @@ a {
 .header_toggle {
     color: var(--white-color);
     font-size: 1.5rem;
+    transition: .3s;
     cursor: pointer
 }
+
+    .header_toggle:hover {
+        color: var(--red-color);
+        transition: .3s;
+    }
 
 /*.header_img {
     width: 35px;
