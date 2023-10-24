@@ -1,0 +1,35 @@
+﻿@model IEnumerable<ProgFlowManager.ASP.Models.ModelsAPI.Programs.Category>
+
+@{
+    ViewData["Title"] = "TestCategory";
+}
+
+<h1>TestCategory</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table white-text">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Label)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Label)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

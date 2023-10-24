@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34031.279
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProgFlowManager.ASP", "ProgFlowManager.ASP\ProgFlowManager.ASP.csproj", "{3DDAF9A9-6B56-48FA-948C-14531C9C6DB6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProgFlowManager.Requester.API", "ProgFlowManager.Requester.API\ProgFlowManager.Requester.API.csproj", "{FF3B44E2-DA34-44E7-8604-CCA3E953FAE0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3DDAF9A9-6B56-48FA-948C-14531C9C6DB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DDAF9A9-6B56-48FA-948C-14531C9C6DB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DDAF9A9-6B56-48FA-948C-14531C9C6DB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DDAF9A9-6B56-48FA-948C-14531C9C6DB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF3B44E2-DA34-44E7-8604-CCA3E953FAE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF3B44E2-DA34-44E7-8604-CCA3E953FAE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF3B44E2-DA34-44E7-8604-CCA3E953FAE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF3B44E2-DA34-44E7-8604-CCA3E953FAE0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EA2D205C-B5B6-4C42-ABBD-D7FD12BC37D3}
+	EndGlobalSection
+EndGlobal

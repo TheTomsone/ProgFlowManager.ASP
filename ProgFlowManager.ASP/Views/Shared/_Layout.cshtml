@@ -1,0 +1,60 @@
+﻿@using ProgFlowManager.ASP.Tools;
+@inject SessionManager _session;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ProgFlowManager.ASP</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/ProgFlowManager.ASP.styles.css" asp-append-version="true" />
+</head>
+<body id="body-pd" data-controller="@ViewData["ControllerName"]">
+    <header class="header" id="header">
+        <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
+        <div class="l-navbar" id="nav-bar">
+            <div>
+                <a class="nav_logo" asp-area="" asp-controller="Home" asp-action="Index"> <i class='bx bx-layer nav_logo-icon'></i> <span class="nav_logo-name" id="logo-name">ProgFlowManager</span> </a>
+            </div>
+            <div class="nav-list">
+                <a class="nav_link" id="home" asp-area="" asp-controller="Home" asp-action="Index"> <i class='bx bx-home-alt-2 nav_icon'></i> <span class="nav_name" id="link-name">Home</span> </a>
+                <a class="nav_link" id="dashboard" asp-area="" asp-controller="Home" asp-action="Index"> <i class='bx bx-spreadsheet nav_icon'></i> <span class="nav_name" id="link-name">Dashboard</span> </a>
+                <a class="nav_link" id="roadmaps" asp-area="" asp-controller="Home" asp-action="Index"> <i class='bx bx-objects-vertical-center nav_icon'></i> <span class="nav_name" id="link-name">Roadmaps</span> </a>
+                <a class="nav_link" id="teams" asp-area="" asp-controller="Home" asp-action="Index"> <i class='bx bx-group nav_icon'></i> <span class="nav_name" id="link-name">Teams</span> </a>
+                <a class="nav_link" id="teams" asp-area="" asp-controller="Home" asp-action="TestCategory"> <i class='bx bx-group nav_icon'></i> <span class="nav_name" id="link-name">Test</span> </a>
+                <div class="bottom">
+                    @if (_session.ConnectedUser is null)
+                    {
+                        <a class="nav_link" id="register" asp-area="" asp-controller="User" asp-action="Register"> <i class='bx bx-lock nav_icon'></i> <span class="nav_name" id="link-name">Register</span> </a>
+                        <a class="nav_link" id="login" asp-area="" asp-controller="User" asp-action="Login"> <i class='bx bx-lock nav_icon'></i> <span class="nav_name" id="link-name">Login</span> </a>
+                    }
+                    else
+                    {
+                        <a class="nav_link" id="account" asp-area="" asp-controller="User" asp-action="Index"> <i class='bx bx-lock nav_icon'></i> <span class="nav_name" id="link-name">Account</span> </a>
+                        <a class="nav_link" id="logout" asp-area="" asp-controller="User" asp-action="Logout"> <i class='bx bx-lock nav_icon'></i> <span class="nav_name" id="link-name">Logout</span> </a>
+                    }
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            <div class="white-text">
+                @RenderBody()
+            </div>
+        </main>
+    </div>
+
+    @* <footer class="footer text-light" id="footer">
+        <div class="container">
+            &copy; 2023 - ProgFlowManager - <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer> *@
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
