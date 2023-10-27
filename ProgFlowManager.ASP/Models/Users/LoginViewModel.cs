@@ -1,14 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ProgFlowManager.ASP.Models.ViewModels
+namespace ProgFlowManager.ASP.Models.Users
 {
     public class LoginViewModel
     {
         [Required]
         [EmailAddress]
-        public required string Email { get; set; }
+        public string Email { get; set; }
         [Required]
         [DataType(DataType.Password)]
-        public required string Password { get; set; }
+        public string Password { get; set; }
     }
 }

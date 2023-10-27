@@ -1,0 +1,68 @@
+﻿@model IEnumerable<ProgFlowManager.BLL.Models.Programs.SoftwareDetails>
+
+@{
+    ViewData["Title"] = "Software";
+    ViewData["ControllerName"] = ViewContext.RouteData.Values["controller"].ToString().ToLower();
+}
+<div class="center-flex programs">
+    @foreach (var software in Model)
+    {
+        <hr />
+        <div class="text-center">
+            <div class="card-header bg-dark-plus">@Html.DisplayFor(modelSoftware => software.HeaderBar)</div>
+            <div class="card-body bg-dark-plus-lighter">
+                <div class="action-button">
+                    <a href="@Url.Action("DeleteContent", "Software", new { id = software.Id })"><i class='bx bx-trash-alt'></i></a>
+                    <a href="@Url.Action("UpdateContent", "Software", new { id = software.Id })"><i class='bx bx-edit-alt'></i></a>
+                </div>
+                <h4 class="card-title">@Html.DisplayFor(modelSoftware => software.Name)</h4>
+                <p class="card-text">@Html.DisplayFor(modelSoftware => software.Resume)</p>
+                @* <a href="#" class="btn btn-primary">Go somewhere</a> *@
+                <div class="card-version">
+                        @foreach (var version in software.Versions)
+                        {
+                            <div class="card item bg-dark-plus">
+                                @* <img src="..." class="card-img-top" alt="..."> *@
+                                <div class="card-body">
+                                    <div class="action-button">
+                                        <a href="@Url.Action("DeleteVersion", "Software", new { id = version.Id })"><i class='bx bx-trash-alt'></i></a>
+                                        <a href="@Url.Action("UpdateVersion", "Software", new { id = version.Id })"><i class='bx bx-edit-alt'></i></a>
+                                    </div>
+                                    <h5 class="card-title">
+                                        @Html.DisplayFor(modelVersion => version.Name)
+                                    </h5>
+                                    <h6 class="card-subtitle text-muted version-nb">@Html.DisplayFor(versionModel => version.VersionFormatted)</h6>
+                                    <p class="card-text">@Html.DisplayFor(modelVersion => version.Resume)</p>
+                                    @* <a href="#" class="btn btn-primary">Go somewhere</a> *@
+                                    <div class="content-card">
+                                        @foreach (var content in version.Contents)
+                                        {
+                                            <div class="card-body bg-dark-plus-lighter">
+                                                <div class="action-button">
+                                                    <a href="@Url.Action("DeleteContent", "Software", new { id = content.Id })"><i class='bx bx-trash-alt'></i></a>
+                                                    <a href="@Url.Action("UpdateContent", "Software", new { id = content.Id })"><i class='bx bx-edit-alt'></i></a>
+                                                </div>
+                                                <h6 class="card-subtitle mb-2 text-muted">@Html.DisplayFor(contentModel => content.Name)</h6>
+                                                <p class="card-text">@Html.DisplayFor(contentModel => content.Resume)</p>
+                                                <h6 class="text-muted">@Html.DisplayFor(contentModel => content.Stage.Label)</h6>
+                                            </div>
+                                        }
+                                        <a class="card-body bg-dark-plus-lighter" href="@Url.Action("CreateContent", "Software", new { versionId = version.Id })">
+                                                <i class='bx bx-plus nav_icon'></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    <a class="card item bg-dark-plus center-flex" href="@Url.Action("CreateVersion", "Software", new { softwareId = software.Id })">
+                            <i class='bx bx-plus nav_icon'></i>
+                    </a>
+                </div>
+            </div>
+            <div class="card-footer text-muted bg-dark-plus">@Html.DisplayFor(modelSoftware => software.FooterBar)</div>
+        </div>
+    }
+    <a class="card-body bg-dark-plus center-flex align-item" href="@Url.Action("CreateSoftware")">
+            <i class='bx bx-plus nav_icon'></i>
+    </a>
+</div>

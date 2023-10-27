@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
 
-namespace ProgFlowManager.ASP.Models.ViewModels
+namespace ProgFlowManager.ASP.Models.Users
 {
     public class RegisterViewModel
     {

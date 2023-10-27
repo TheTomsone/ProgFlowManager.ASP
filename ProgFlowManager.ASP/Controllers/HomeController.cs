@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProgFlowManager.ASP.Models;
-using ProgFlowManager.ASP.Models.ModelsAPI.Programs;
 using ProgFlowManager.ASP.Tools;
 using ProgFlowManager.Requester.API;
 using System.Diagnostics;
@@ -34,11 +33,6 @@ namespace ProgFlowManager.ASP.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
-
-        public IActionResult TestCategory()
-        {
-            return View(_genericAPIRequester.Get<IEnumerable<Category>>("Category"));
         }
     }
 }

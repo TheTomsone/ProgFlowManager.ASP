@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ProgFlowManager.ASP.Models.ViewModels;
+using ProgFlowManager.ASP.Models.Users;
 using ProgFlowManager.ASP.Tools;
+using ProgFlowManager.BLL.Models.Users;
 using ProgFlowManager.Requester.API;
 
 namespace ProgFlowManager.ASP.Controllers
@@ -18,9 +19,18 @@ namespace ProgFlowManager.ASP.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return View(_sessionManager.ConnectedUser);
+        }
+        public IActionResult AllUsers()
+        {
+            return View(_genericAPIRequester.Get<IEnumerable<User>>("User"));
         }
 
+        public IActionResult Register()
+        {
+            return View(new RegisterViewModel());
+        }
+        [HttpPost]
         public IActionResult Register(RegisterViewModel register)
         {
             if(!ModelState.IsValid) return View(register);
@@ -30,6 +40,10 @@ namespace ProgFlowManager.ASP.Controllers
             return View();
         }
 
+        public IActionResult Login()
+        {
+            return View(new LoginViewModel());
+        }
         public IActionResult Login(LoginViewModel login)
         {
             if (!ModelState.IsValid) return View(login);
@@ -40,6 +54,13 @@ namespace ProgFlowManager.ASP.Controllers
                 return RedirectToAction("Index", "Home");
             }
             catch (Exception ex) { return BadRequest(ex.Message); }
+        }
+
+        public IActionResult Logout()
+        {
+            if (_sessionManager.Logout()) return RedirectToAction("Index", "Home");
+
+            return View();
         }
     }
 }

@@ -33,15 +33,19 @@ body {
 :root {
     --header-height: 3rem;
     --nav-width: 68px;
-    --nav-width-correction : 32px;
+    --nav-width-correction: 32px;
     --first-color: rgb(16,16,16);
     --first-color-light: rgb(20,20,20);
+    --first-color-lighter-1: rgb(23,23,23);
+    --first-color-lighter-2: rgb(25,25,25);
+    --first-color-lighter-3: rgb(35,35,35);
     --red-color: rgb(173, 31, 31);
     --white-color: rgb(200, 200, 200);
     --grey-light-color: #808080;
     --body-font: 'Nunito', sans-serif;
     --normal-font-size: 1rem;
-    --z-fixed: 100
+    --z-fixed: 100;
+    --z-backed: -100;
 }
 
 *, ::before, ::after {
@@ -60,6 +64,12 @@ body {
 
 h1 {
     color : var(--red-color);
+}
+
+hr {
+    margin: 0 auto;
+    background-color: var(--first-color-lighter-3);
+    width: 60%;
 }
 
 a {
@@ -116,7 +126,7 @@ a {
     background-color: var(--first-color);
     /*padding: .5rem 0 0 0;*/
     transition: .5s;
-    z-index: var(--z-fixed)
+    z-index: var(--z-backed);
 }
 
 .nav {
@@ -203,15 +213,146 @@ a {
     height: 100vh
 }
 
-footer {
-    bottom: -50px;
-    background-color: var(--first-color);
+
+
+.roadmap {
+    position: relative
 }
 
-    .fixed-footer {
-        bottom: 0 !important;
-        position: fixed !important;
+    .roadmap .year {
+        margin-top: 1vh;
     }
+
+    .roadmap hr {
+        margin: 10px auto;
+        width: 70%
+    }
+
+.roadmap-head {
+    background-color : var(--red-color);
+}
+
+    .roadmap-head .quarter {
+        border-style: none none none solid;
+        border-color: var(--white-color);
+        border-width: 1px;
+        height: 5vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+.roadmap-body {
+    position: relative;
+}
+
+    .roadmap-body .program-bar {
+        background-color: var(--first-color);
+        padding: 20px;
+    }
+
+    .roadmap-body .quarter-1 {
+        background-color: var(--first-color-lighter-1);
+    }
+    .roadmap-body .quarter-2 {
+        background-color: var(--first-color-lighter-2);
+    }
+    .roadmap-body .roadmap-bg {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        padding: 0;
+        position: absolute;
+        z-index: var(--z-backed);
+    }
+        .roadmap-bg div {
+            width: 25%;
+            height: 30vh;
+        }
+
+
+.center-flex {
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+}
+
+.programs {
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+}
+
+.align-item {
+    align-items:center;
+}
+
+.card-body {
+    position:relative;
+}
+
+.card-body .card-version {
+    display: flex;
+    justify-content: space-around;
+    align-items: stretch;
+    max-width: 100%;
+}
+        .card-body .card-version .item {
+            flex: 0 0 calc(25% - 20px);
+            margin: 10px;
+        }
+
+            .card-body .card-version .item .content-card {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+        .card-body .action-button {
+            position:absolute;
+            top: 0;
+            right: 0;
+            padding: 5px;
+        }
+
+    /*.card-footer {
+    margin-bottom : 10vh;
+}
+
+.card-body .card-version {
+    display: flex;
+    align-items: stretch;
+    max-width: 100%;
+}
+    .card-body .card-version .version-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: flex-start;
+        max-width: 80%;
+    }
+
+.card-body .card-version .version-list .item {
+        flex: 0 0 calc(33% - 20px);
+        margin: 10px;
+        text-align: center;
+        display: flex;
+        align-items: center;
+    }
+
+.content-card {
+    margin: 10px 0 0 0;
+}*/
+    footer {
+        bottom: -50px;
+        background-color: var(--first-color);
+    }
+
+.fixed-footer {
+    bottom: 0 !important;
+    position: fixed !important;
+}
 
 footer a {
     color : var(--red-color);

@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ProgFlowManager.BLL\ProgFlowManager.BLL.csproj" />
     <ProjectReference Include="..\ProgFlowManager.Requester.API\ProgFlowManager.Requester.API.csproj" />
   </ItemGroup>
 

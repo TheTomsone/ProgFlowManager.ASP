@@ -20,20 +20,20 @@
             </div>
             <div class="nav-list">
                 <a class="nav_link" id="home" asp-area="" asp-controller="Home" asp-action="Index"> <i class='bx bx-home-alt-2 nav_icon'></i> <span class="nav_name" id="link-name">Home</span> </a>
-                <a class="nav_link" id="dashboard" asp-area="" asp-controller="Home" asp-action="Index"> <i class='bx bx-spreadsheet nav_icon'></i> <span class="nav_name" id="link-name">Dashboard</span> </a>
-                <a class="nav_link" id="roadmaps" asp-area="" asp-controller="Home" asp-action="Index"> <i class='bx bx-objects-vertical-center nav_icon'></i> <span class="nav_name" id="link-name">Roadmaps</span> </a>
-                <a class="nav_link" id="teams" asp-area="" asp-controller="Home" asp-action="Index"> <i class='bx bx-group nav_icon'></i> <span class="nav_name" id="link-name">Teams</span> </a>
-                <a class="nav_link" id="teams" asp-area="" asp-controller="Home" asp-action="TestCategory"> <i class='bx bx-group nav_icon'></i> <span class="nav_name" id="link-name">Test</span> </a>
+                <a class="nav_link" id="dashboard" asp-area="" asp-controller="Dashboard" asp-action="Index"> <i class='bx bx-spreadsheet nav_icon'></i> <span class="nav_name" id="link-name">Dashboard</span> </a>
+                <a class="nav_link" id="roadmap" asp-area="" asp-controller="Roadmap" asp-action="Index"> <i class='bx bx-objects-vertical-center nav_icon'></i> <span class="nav_name" id="link-name">Roadmaps</span> </a>
+                <a class="nav_link" id="software" asp-area="" asp-controller="Software" asp-action="Index"> <i class='bx bx-edit nav_icon'></i> <span class="nav_name" id="link-name">Software editor</span> </a>
+                <a class="nav_link" id="team" asp-area="" asp-controller="Home" asp-action="Index"> <i class='bx bx-group nav_icon'></i> <span class="nav_name" id="link-name">Teams</span> </a>
                 <div class="bottom">
                     @if (_session.ConnectedUser is null)
                     {
-                        <a class="nav_link" id="register" asp-area="" asp-controller="User" asp-action="Register"> <i class='bx bx-lock nav_icon'></i> <span class="nav_name" id="link-name">Register</span> </a>
-                        <a class="nav_link" id="login" asp-area="" asp-controller="User" asp-action="Login"> <i class='bx bx-lock nav_icon'></i> <span class="nav_name" id="link-name">Login</span> </a>
+                        <a class="nav_link" id="register" asp-area="" asp-controller="User" asp-action="Register"> <i class='bx bx-user-plus nav_icon'></i> <span class="nav_name" id="link-name">Register</span> </a>
+                        <a class="nav_link" id="login" asp-area="" asp-controller="User" asp-action="Login"> <i class='bx bx-log-in-circle nav_icon'></i> <span class="nav_name" id="link-name">Login</span> </a>
                     }
                     else
                     {
-                        <a class="nav_link" id="account" asp-area="" asp-controller="User" asp-action="Index"> <i class='bx bx-lock nav_icon'></i> <span class="nav_name" id="link-name">Account</span> </a>
-                        <a class="nav_link" id="logout" asp-area="" asp-controller="User" asp-action="Logout"> <i class='bx bx-lock nav_icon'></i> <span class="nav_name" id="link-name">Logout</span> </a>
+                        <a class="nav_link" id="account" asp-area="" asp-controller="User" asp-action="Index"> <i class='bx bx-user-circle nav_icon'></i> <span class="nav_name" id="link-name">Account</span> </a>
+                        <a class="nav_link" id="logout" asp-area="" asp-controller="User" asp-action="Logout"> <i class='bx bx-log-out-circle nav_icon'></i> <span class="nav_name" id="link-name">Logout</span> </a>
                     }
                 </div>
             </div>

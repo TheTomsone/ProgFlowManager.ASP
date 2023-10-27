@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using ProgFlowManager.ASP.Models.ModelsAPI.Users;
+using ProgFlowManager.BLL.Models.Users;
 using ProgFlowManager.Requester.API;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;

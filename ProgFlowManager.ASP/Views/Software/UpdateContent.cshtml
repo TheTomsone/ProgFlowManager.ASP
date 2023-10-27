@@ -1,0 +1,69 @@
+﻿@using ProgFlowManager.BLL.Models.Programs;
+@using ProgFlowManager.Requester.API;
+@model ProgFlowManager.ASP.Models.Programs.ContentViewModel
+@inject GenericAPIRequester _requester;
+
+@{
+    ViewData["Title"] = "UpdateContent";
+    IEnumerable<Stage> stages = _requester.Get<IEnumerable<Stage>>("Stage").Where(s => s.Id % 100 == 0);
+    VersionNb currentVersion = _requester.Get<VersionNb>($"Version/{Model.VersionNbId}");
+    IEnumerable<VersionNb> versions = _requester.Get<IEnumerable<VersionNb>>($"Version/bySoftware/{currentVersion.SoftwareId}");
+}
+
+<h1>UpdateContent</h1>
+
+<h4>ContentViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="UpdateContent">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input asp-for="Id" class="form-control" value="@Model.Id" type="hidden" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" placeholder="@Html.DisplayFor(content => content.Name)" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Resume" class="control-label"></label>
+                <input asp-for="Resume" class="form-control" placeholder="@Html.DisplayFor(content => content.Resume)" />
+                <span asp-validation-for="Resume" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StageId" class="control-label"></label>
+                <select asp-for="StageId" class="form-control">
+                    <option value="0">--- SELECT A NEW STAGE ---</option>
+                    @foreach (Stage stage in stages)
+                    {
+                        if (stage.Id == Model.StageId) continue;
+                        else { <option value="@stage.Id">@stage.Label</option> }
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="VersionNbId" class="control-label"></label>
+                <select asp-for="VersionNbId" class="form-control">
+                    <option value="0">--- SELECT A NEW VERSION ---</option>
+                    @foreach (VersionNb version in versions)
+                    {
+                        if (version.Id == currentVersion.Id) continue;
+                        <option value="@version.Id">@version.Name - v@(version.Major).@(version.Minor).@(version.Patch)</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

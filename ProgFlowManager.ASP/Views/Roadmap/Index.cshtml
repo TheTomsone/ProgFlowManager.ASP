@@ -1,0 +1,58 @@
+﻿@{
+    ViewData["Title"] = "Roadmaps";
+    ViewData["ControllerName"] = ViewContext.RouteData.Values["controller"].ToString().ToLower();
+}
+<div class="roadmap text-center">
+    <h3 class="display-6 year">@DateTime.Now.ToString("yyyy")</h3>
+    <hr />
+    <div class="row roadmap-head">
+        <div class="col-sm quarter">
+            <span>Q1</span>
+        </div>
+        <div class="col-sm quarter">
+            <span>Q2</span>
+        </div>
+        <div class="col-sm quarter">
+            <span>Q3</span>
+        </div>
+        <div class="col-sm quarter">
+            <span>Q4</span>
+        </div>
+    </div>
+    <div class="row roadmap-body">
+        <div class="program-bar">
+            <div class="program-info">
+                Program 1
+            </div>
+        </div>
+        <div class="content-lines">
+            <div class="q1">
+                <div class="content 30">Content 1</div>
+            </div>
+            <div class="q2">
+                <div class="content 50">Content 1</div>
+            </div>
+            <div class="q3">
+            </div>
+            <div class="q4">
+            </div>
+
+            <div class="content q1-50f">Content 2</div>
+            <div class="content q2-50b q3-50f">Content 3</div>
+        </div>
+        <div class="program-bar">
+            <div class="program-info">
+                Program 2
+            </div>
+        </div>
+        <div class="content-lines">
+
+        </div>
+        <div class="roadmap-bg">
+            <div class="quarter-1"></div>
+            <div class="quarter-2"></div>
+            <div class="quarter-1"></div>
+            <div class="quarter-2"></div>
+        </div>
+    </div>
+</div>
